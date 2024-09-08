@@ -7,15 +7,13 @@ require_once('../../fonction/function.php');
 if (isset($_POST['Valider']) && !empty($_GET['idSuivis'])) {
     $id = $_GET['idSuivis'];
     $constant = htmlspecialchars($_POST['constant']);
-    $adoption = htmlspecialchars($_POST['adoption']);
-    $statut = 0;
     if (empty($constant)) {
         $msg = "Veilez completer tous les champs SVP !";
         $_SESSION['msg'] = $msg;
         header("location:../../views/suivis.php");
     } else {
-        $req = $connexion->prepare("UPDATE `suivis` SET `constation`=?,`adoption`=? WHERE id=?;");
-        $resultat = $req->execute([$constant, $adoption, $id]);
+        $req = $connexion->prepare("UPDATE `suivis` SET `constation`=? WHERE id=?;");
+        $resultat = $req->execute([$constant, $id]);
         if ($resultat == true) {
             # Notification
             $_SESSION['msg'] = "La modification réussi";

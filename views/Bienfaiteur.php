@@ -48,23 +48,23 @@ require_once('../models/select/select-Bienfaiteur.php'); //Appel du script de se
                                 <div class="row">
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Nom <span class="text-danger">*</span></label>
-                                        <input required type="text" name="nom" class="form-control" placeholder="Entrez le nom" <?php if (isset($_GET['idEnfant'])) { ?>
+                                        <input required type="text" name="nom" class="form-control" placeholder="Entrez le nom" <?php if (isset($_GET['idBienfait'])) { ?>
                                             value=<?php echo $tab['nom']; ?> <?php } ?>>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Postnom <span class="text-danger">*</span></label>
-                                        <input required type="text" name="postnom" class="form-control" placeholder="Entrez le postnom" <?php if (isset($_GET['idEnfant'])) { ?>
+                                        <input required type="text" name="postnom" class="form-control" placeholder="Entrez le postnom" <?php if (isset($_GET['idBienfait'])) { ?>
                                             value=<?php echo $tab['postnom']; ?> <?php } ?>>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Prenom <span class="text-danger">*</span></label>
-                                        <input required type="text" name="prenom" class="form-control" placeholder="Entrez le prenom" <?php if (isset($_GET['idEnfant'])) { ?>
+                                        <input required type="text" name="prenom" class="form-control" placeholder="Entrez le prenom" <?php if (isset($_GET['idBienfait'])) { ?>
                                             value=<?php echo $tab['prenom']; ?> <?php } ?>>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Genre <span class="text-danger">*</span></label>
                                         <select required id="" name="genre" class="form-control select2">
-                                            <?php if (isset($_GET['idEnfant'])) {
+                                            <?php if (isset($_GET['idBienfait'])) {
                                                 $genre = $tab['genre'];
                                             ?>
                                                 <option value="Masculin">Masculin</option>
@@ -82,20 +82,19 @@ require_once('../models/select/select-Bienfaiteur.php'); //Appel du script de se
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Adresse <span class="text-danger">*</span></label>
-                                        <input required type="text" name="adresse" class="form-control" placeholder="Entrez le adresse" <?php if (isset($_GET['idEnfant'])) { ?>
-                                            value=<?php echo $tab['prenom']; ?> <?php } ?>>
+                                        <input required type="text" name="adresse" class="form-control" placeholder="Entrez le adresse" <?php if (isset($_GET['idBienfait'])) { ?>
+                                            value=<?php echo $tab['adresse']; ?> <?php } ?>>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Numero telephone <span class="text-danger">*</span></label>
-                                        <input required type="text" name="telephone" class="form-control" placeholder="Entrez votre numero" <?php if (isset($_GET['idEnfant'])) { ?>
-                                            value=<?php echo $tab['prenom']; ?> <?php } ?>>
+                                        <input required type="text" name="telephone" class="form-control" placeholder="Entrez votre numero" <?php if (isset($_GET['idBienfait'])) { ?>
+                                            value=<?php echo $tab['telephone']; ?> <?php } ?>>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Adresse mail <span class="text-danger">*</span></label>
-                                        <input required type="text" name="mail" class="form-control" placeholder="Entrez le mail" <?php if (isset($_GET['idEnfant'])) { ?>
+                                        <input required type="mail" name="mail" class="form-control" placeholder="Entrez le mail" <?php if (isset($_GET['idBienfait'])) { ?>
                                             value=<?php echo $tab['mail']; ?> <?php } ?>>
                                     </div>
-                                    
                                     <div class="col-xl-12 col-lg-12 col-md-12 mt-10 col-sm-12 p-3 aling-center">
                                         <input type="submit" name="Valider" class="btn btn-success w-100" value="<?= $btn ?>">
                                     </div>
@@ -141,10 +140,10 @@ require_once('../models/select/select-Bienfaiteur.php'); //Appel du script de se
                                         <td><?= $idBienfait["telephone"] ?></td>
                                         <td><?= $idBienfait["mail"] ?></td>                                        
                                         <td>
-                                            <a href="Enfant.php?AjoutBien&idBienfait=<?= $idBienfait['id'] ?>" class="btn btn-success btn-sm">
+                                            <a href="Bienfaiteur.php?AjoutBien&idBienfait=<?= $idBienfait['id'] ?>" class="btn btn-success btn-sm">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')" href="../models/delete/del-enfant-post.php?idSupEnf=<?= $idBienfait['id'] ?>" class="btn btn-danger btn-sm mt-1">
+                                            <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')" href="../models/delete/del-bienfaiteur-post.php?idSupEnf=<?= $idBienfait['id'] ?>" class="btn btn-danger btn-sm mt-1">
                                                 <i class="bi bi-trash-fill"></i>
                                             </a>
                                         </td>

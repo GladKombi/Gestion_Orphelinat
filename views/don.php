@@ -40,7 +40,7 @@ require_once('../models/select/select-don.php');
                     ?>
                     <!-- Le form qui enregistrer les données  -->
                     <?php
-                    if (isset($_GET['AjoutDon']) && isset($_GET['IdCategorie'])) {
+                    if (isset($_GET['AjoutDon']) && isset($_GET['IdCategorie'])|| isset($_GET['Modifier'])) {
                         $categorie = $_GET['IdCategorie'];
                         if ($categorie == 1) {
                         ?>
@@ -50,8 +50,8 @@ require_once('../models/select/select-don.php');
                                     <div class="row">
                                         <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                             <label for="">Description <span class="text-danger">*</span></label>
-                                            <input required type="text" name="description" class="form-control" placeholder="Entrez le nom" <?php if (isset($_GET['idEnfant'])) { ?>
-                                                value=<?php echo $tab['nom']; ?> <?php } ?>>
+                                            <input required type="text" name="description" class="form-control" placeholder="Entrez le nom" <?php if (isset($_GET['idDonNat'])) { ?>
+                                                value=<?php echo $tab['description']; ?> <?php } ?>>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                             <label for="">Bienfaitaire <span class="text-danger">*</span></label>
@@ -63,10 +63,10 @@ require_once('../models/select/select-don.php');
                                                 $Donnateur = "";
                                                 while ($Bienfait = $rep->fetch()) {
                                                     $Donnateur = $tab['orientation'];
-                                                    if (isset($_GET['idClass'])) {
+                                                    if (isset($_GET['idDonNat'])) {
                                                 ?>
                                                         <option <?php if ($Bienfait['id'] == $Donnateur) { ?> Selected <?php } ?> value="<?php echo $Bienfait['id']; ?>">
-                                                            <?php echo  $Bienfait['Description']; ?>
+                                                        <?php echo  $Bienfait['nom'] . " " . $Bienfait['postnom'] . " " . $Bienfait['prenom']; ?>
                                                         </option>
                                                     <?php } else {
                                                     ?>
@@ -80,7 +80,7 @@ require_once('../models/select/select-don.php');
                                         </div>
 
                                         <div class="col-xl-12 col-lg-12 col-md-12 mt-10 col-sm-12 p-3 aling-center">
-                                            <input type="submit" name="<?= $btn ?>" class="btn btn-success w-100" value="Enregister">
+                                            <input type="submit" name="<?= $btn ?>" class="btn btn-success w-100" value="<?= $btn ?>">
                                         </div>
                                     </div>
                                 </form>
@@ -94,8 +94,8 @@ require_once('../models/select/select-don.php');
                                         <div class="row">
                                             <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                                 <label for="">Description <span class="text-danger">*</span></label>
-                                                <input required type="text" name="description" class="form-control" placeholder="Entrez la description" <?php if (isset($_GET['idEnfant'])) { ?>
-                                                    value=<?php echo $tab['nom']; ?> <?php } ?>>
+                                                <input required type="text" name="description" class="form-control" placeholder="Entrez la description" <?php if (isset($_GET['idDonNum'])) { ?>
+                                                    value=<?php echo $tab['description']; ?> <?php } ?>>
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                                 <label for="">Bienfaitaire <span class="text-danger">*</span></label>
@@ -110,7 +110,7 @@ require_once('../models/select/select-don.php');
                                                         if (isset($_GET['idClass'])) {
                                                     ?>
                                                             <option <?php if ($Bienfait['id'] == $Donnateur) { ?> Selected <?php } ?> value="<?php echo $Bienfait['id']; ?>">
-                                                                <?php echo  $Bienfait['Description']; ?>
+                                                            <?php echo  $Bienfait['nom'] . " " . $Bienfait['postnom'] . " " . $Bienfait['prenom']; ?>
                                                             </option>
                                                         <?php } else {
                                                         ?>
@@ -124,17 +124,17 @@ require_once('../models/select/select-don.php');
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                                 <label for="">Montant <span class="text-danger">*</span></label>
-                                                <input required type="text" name="montant" class="form-control" placeholder="Entrez le montant" <?php if (isset($_GET['idEnfant'])) { ?>
-                                                    value=<?php echo $tab['prenom']; ?> <?php } ?>>
+                                                <input required type="text" name="montant" class="form-control" placeholder="Entrez le montant" <?php if (isset($_GET['idDonNum'])) { ?>
+                                                    value=<?php echo $tab['montant']; ?> <?php } ?>>
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                                 <label for="">Devise <span class="text-danger">*</span></label>
                                                 <select required id="" name="devise" class="form-control select2">
-                                                    <?php if (isset($_GET['idEnfant'])) {
-                                                        $genre = $tab['genre'];
+                                                    <?php if (isset($_GET['idDonNum'])) {
+                                                        $devise = $tab['devise'];
                                                     ?>
-                                                        <option value="Masculin">Masculin</option>
-                                                        <option <?php if ($genre == "Feminin") { ?> Selected <?php } ?>value="Feminin">Feminin</option>
+                                                        <option value="Dollards">Dollards</option>
+                                                        <option <?php if ($devise == "CDF") { ?> Selected <?php } ?>value="CDF">CDF</option>
                                                     <?php
                                                     } else {
                                                     ?>
@@ -149,7 +149,7 @@ require_once('../models/select/select-don.php');
                                             
     
                                             <div class="col-xl-12 col-lg-12 col-md-12 mt-10 col-sm-12 p-3 aling-center">
-                                                <input type="submit" name="<?= $btn ?>" class="btn btn-success w-100" value="Enregistrer">
+                                                <input type="submit" name="<?= $btn ?>" class="btn btn-success w-100" value="<?= $btn ?>">
                                             </div>
                                         </div>
                                     </form>
@@ -215,10 +215,10 @@ require_once('../models/select/select-don.php');
                                         <td><?= $idDonNat["nom"] . " " . $idDonNat["postnom"] . " " . $idDonNat["prenom"] ?></td>
                                         <td><?= $idDonNat["description"] ?></td>                                        
                                         <td>
-                                            <a href="Enfant.php?AjoutBien&idDonNat=<?= $idDonNat['id'] ?>" class="btn btn-success btn-sm">
+                                            <a href="don.php?AjoutDon&IdCategorie=1&idDonNat=<?= $idDonNat['id'] ?>" class="btn btn-success btn-sm">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')" href="../models/delete/del-enfant-post.php?idSupEnf=<?= $idDonNat['id'] ?>" class="btn btn-danger btn-sm mt-1">
+                                            <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')" href="../models/delete/del-don-post.php?idSupEnf=<?= $idDonNat['id'] ?>" class="btn btn-danger btn-sm mt-1">
                                                 <i class="bi bi-trash-fill"></i>
                                             </a>
                                         </td>
@@ -255,7 +255,7 @@ require_once('../models/select/select-don.php');
                                         <td><?= $idDonNum["description"] ?></td>    
                                         <td><?= $idDonNum["montant"]. " " . $idDonNum["devise"]?></td>                                      
                                         <td>
-                                            <a href="Enfant.php?AjoutBien&idDonNum=<?= $idDonNum['id'] ?>" class="btn btn-success btn-sm">
+                                            <a href="don.php?AjoutDon&IdCategorie=2&idDonNum=<?= $idDonNum['id'] ?>" class="btn btn-success btn-sm">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
                                             <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')" href="../models/delete/del-enfant-post.php?idSupEnf=<?= $idDonNum['id'] ?>" class="btn btn-danger btn-sm mt-1">

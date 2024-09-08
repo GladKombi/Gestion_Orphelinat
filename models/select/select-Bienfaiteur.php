@@ -5,7 +5,7 @@
         $getDataMod->execute([$id]);
         $tab=$getDataMod->fetch();
         # Url du traitement lors de la modification
-        $url="../models/updat/up-enfant-post.php?idBienfait=".$id;
+        $url="../models/updat/up-bienfaiteur-post.php?idBienfait=".$id;
         $btn="Modifier";
         $title="Modifier Bienfaiteur";
     }

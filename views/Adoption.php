@@ -48,11 +48,15 @@ require_once('../models/select/select-Adoption.php');
                             <h4 class="text-center"><?= $title ?></h4>
                             <form action="<?= $url ?>" method="POST" class="shadow p-3" enctype="multipart/form-data">
                                 <div class="row">
+                                    <?php
+                                    if((isset($_GET['idAdoption']))){
+                                    ?>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Note <span class="text-danger">*</span></label>
-                                        <input required type="text" name="note" class="form-control" placeholder="Entrez le notes" <?php if (isset($_GET['idEnfant'])) { ?>
-                                            value=<?php echo $tab['prenom']; ?> <?php } ?>>
+                                        <input required type="text" name="note" class="form-control" placeholder="Entrez le notes" <?php if (isset($_GET['idAdoption'])) { ?>
+                                            value=<?php echo $tab['note']; ?> <?php } ?>>
                                     </div>
+                                    <?php }else {?>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Enfant <span class="text-danger">*</span></label>
                                         <select required name="enfant" id="" class="form-control select2">
@@ -104,7 +108,7 @@ require_once('../models/select/select-Adoption.php');
                                             ?>
                                         </select>
                                     </div>                                    
-                            
+                                    <?php }?>
                                     <div class="col-xl-12 col-lg-12 col-md-12 mt-10 col-sm-12 p-3 aling-center">
                                         <input type="submit" name="Valider" class="btn btn-success w-100" value="<?= $btn ?>">
                                     </div>
@@ -152,7 +156,7 @@ require_once('../models/select/select-Adoption.php');
                                         </td>
                                         <td><?= $idAdoption["nomtutaire"] . " " . $idAdoption["prenomTutare"] ?></td>
                                         <td>
-                                            <a href="Adoption.php?AjoutBien&idAdoption=<?= $idAdoption['id'] ?>" class="btn btn-success btn-sm">
+                                            <a href="Adoption.php?AjoutAdop&idAdoption=<?= $idAdoption['id'] ?>" class="btn btn-success btn-sm">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
                                             <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')" href="../models/delete/del-enfant-post.php?idSupEnf=<?= $idAdoption['id'] ?>" class="btn btn-danger btn-sm mt-1">

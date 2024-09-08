@@ -1,11 +1,11 @@
 <?php
-    if (isset($_GET['idDeclaration'])){
-        $id=$_GET['idDeclaration'];
+    if (isset($_GET['idDclara'])){
+        $id=$_GET['idDclara'];
         $getDataMod=$connexion->prepare("SELECT * FROM declaration WHERE id=?");
         $getDataMod->execute([$id]);
         $tab=$getDataMod->fetch();
         # Url du traitement lors de la modification
-        $url="../models/updat/up-enfant-post.php?idDeclaration=".$id;
+        $url="../models/updat/up-declaration-post.php?idDclara=".$id;
         $btn="Modifier";
         $title="Modifier Declaration";
     }

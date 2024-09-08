@@ -1,11 +1,11 @@
 <?php
-    if (isset($_GET['idEnfant'])){
-        $id=$_GET['idEnfant'];
+    if (isset($_GET['idTuteur'])){
+        $id=$_GET['idTuteur'];
         $getDataMod=$connexion->prepare("SELECT * FROM tuteur WHERE id=?");
         $getDataMod->execute([$id]);
         $tab=$getDataMod->fetch();
         # Url du traitement lors de la modification
-        $url="../models/updat/up-enfant-post.php?idEnfant=".$id;
+        $url="../models/updat/up-tuteur-post.php?idTuteur=".$id;
         $btn="Modifier";
         $title="Modifier un tuteur";
     }
