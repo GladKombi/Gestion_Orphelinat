@@ -1,11 +1,11 @@
 <?php
-    if (isset($_GET['idSortie'])){
-        $id=$_GET['idSortie'];
+    if (isset($_GET['idupsortie'])){
+        $id=$_GET['idupsortie'];
         $getDataMod=$connexion->prepare("SELECT * FROM sortie WHERE id=?");
         $getDataMod->execute([$id]);
         $tab=$getDataMod->fetch();
         # Url du traitement lors de la modification
-        $url="../models/updat/up-enfant-post.php?idSortie=".$id;
+        $url="../models/updat/up-sortie-post.php?idupsortie=".$id;
         $btn="Modifier";
         $title="Modifier une sortie";
     }

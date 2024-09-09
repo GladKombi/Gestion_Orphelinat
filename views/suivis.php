@@ -42,17 +42,21 @@ require_once('../models/select/select-Suivis.php');
                     ?>
                     <!-- Le form qui enregistrer les données  -->
                     <?php
-                    if (isset($_GET['AjoutSuis']) ||isset($_GET['idSuivis']) ) {
+                    if (isset($_GET['AjoutSuis'])) {
                     ?>
                         <div class="col-xl-12 ">
                             <h4 class="text-center"><?= $title ?></h4>
                             <form action="<?= $url ?>" method="POST" class="shadow p-3" enctype="multipart/form-data">
                                 <div class="row">
+                                <?php
+                                    if((isset($_GET['idSuivis']))){
+                                    ?>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Constant <span class="text-danger">*</span></label>
                                         <input required type="text" name="constant" class="form-control" placeholder="Entrez ici le constant" <?php if (isset($_GET['idSuivis'])) { ?>
                                             value=<?php echo $tab['constation']; ?> <?php } ?>>
                                     </div>
+                                    <?php }else {?>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Adoption <span class="text-danger">*</span></label>
                                         <select required name="adoption" id="" class="form-control select2">
@@ -63,7 +67,7 @@ require_once('../models/select/select-Suivis.php');
                                             $adopxion = "";
                                             while ($Adoption = $rep->fetch()) {
                                                 $adopxion = $tab['adoption'];
-                                                if (isset($_GET['idSuivis'])) {
+                                                if (isset($_GET['etetr'])) {
                                             ?>
                                                     <option <?php if ($Adoption['id'] == $adopxion) { ?> Selected <?php } ?> value="<?php echo $Adoption['id']; ?>">
                                                     <?php echo  $Adoption['id'] . ". " .$Adoption['date'] . "   L'enfant: " . $Adoption['nom'] . " " . $Adoption['postnom']; ?>
@@ -77,7 +81,8 @@ require_once('../models/select/select-Suivis.php');
                                             }
                                             ?>
                                         </select>
-                                    </div>                                   
+                                    </div>  
+                                    <?php }?>                                 
                                     <div class="col-xl-12 col-lg-12 col-md-12 mt-10 col-sm-12 p-3 aling-center">
                                         <input type="submit" name="Valider" class="btn btn-success w-100" value="<?= $btn ?>">
                                     </div>
@@ -125,7 +130,7 @@ require_once('../models/select/select-Suivis.php');
                                         <td><?= $idSuivis["nomtutaire"]. " " . $idSuivis["prenomTutare"] ?></td>
                                         <td><?= $idSuivis["constation"] ?></td>
                                         <td>
-                                            <a href="suivis.php?idSuivis=<?= $idSuivis['id'] ?>" class="btn btn-success btn-sm">
+                                            <a href="suivis.php?AjoutSuis&idSuivis=<?= $idSuivis['id'] ?>" class="btn btn-success btn-sm">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
                                             <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')" href="../models/delete/del-enfant-post.php?idSupEnf=<?= $idSuivis['id'] ?>" class="btn btn-danger btn-sm mt-1">

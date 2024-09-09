@@ -5,7 +5,7 @@
         $getDataMod->execute([$id]);
         $tab=$getDataMod->fetch();
         # Url du traitement lors de la modification
-        $url="../models/updat/up-enfant-post.php?idAdoption=".$id;
+        $url="../models/updat/up-adoption-post.php?idAdoption=".$id;
         $btn="Modifier";
         $title="Modifier Adoption";
     }
